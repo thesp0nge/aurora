@@ -1,13 +1,47 @@
-README v20110803 
+README v20110908
 
-  This is the readme file for Mirage project. Mirage is a BSD licensed static
-  analyzer tool for security issues.
+  This is the readme file for aurora project. aurora is a BSD licensed hybrid
+  source code analyzer for security issues.
+
+HISTORY
+
+  It was the 3rd October 2006 and the Owasp Orizon project has begun. The goal
+  was really challenging: building an open source static analyzer tool. I started
+  thinking about using academic parser generator in order to build abstract
+  syntax trees from the source code being scanned. This approach lead to a
+  complexity bubble due the incredible amount of information retrieved from the
+  sources from the parser generated using freecc or antlr.
+
+  It was december 2010 and the Owasp Orizon project, after some year of hype
+  wasn't update since months. So I decided to switch from Java to Ruby using the
+  language I was writing webapps with.
+  I called this project 'mirage' since it was a pure mirage to build a source
+  code modeling engine and then to build a static analyzer.
+
+  In spring 2011 I decided to gather some fresh ideas and energy and I declared
+  as failed both mirage than Owasp Orizon projects and I started hacking around a
+  2nd generation source code analyzer written in pure C using lex and yacc to
+  build parsers for my source file.
+
+  8 September 2011 I renamed the mirage project as 'aurora', thanks to ALOr
+  (Alberto Ornaghi) for the great name suggestion and I moved to a far more
+  interesting goal. Building an hybrid source code analyzer tool. Of course it
+  will be a command line tool but when there will be something usable, I'll add a
+  Ruby on Rails web app over it.
+
+VERSION
+
+  Check the VERSION file
+
+
+LINK
   
-  Starting from the Owasp Orizon concepts, Mirage will fill the gaps using Flex
-  && Bison generated parsers to perform static analyisis.
+  The github repository: http://github.com/thesp0nge/aurora
+  The main website: http://aurora.armoredcode.com
+  
 
 For users
-  In order to install mirage and have it running, you have to simply follow the
+  In order to install aurora and have it running, you have to simply follow the
   standard installation process for GNU tools.
 
   
