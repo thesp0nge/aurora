@@ -1,0 +1,21 @@
+README v20110803 
+
+  This is the readme file for Mirage project. Mirage is a BSD licensed static
+  analyzer tool for security issues.
+  
+  Starting from the Owasp Orizon concepts, Mirage will fill the gaps using Flex
+  && Bison generated parsers to perform static analyisis.
+
+For users
+  In order to install mirage and have it running, you have to simply follow the
+  standard installation process for GNU tools.
+
+  
+For developers who want to hack the code
+  1) fork the report from github
+  2) launch autoreconf
+  3) start hacking 
+  4) make me a pull request
+  5) Have fun!
+  
+
