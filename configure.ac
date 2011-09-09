@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.65])
-AC_INIT([mirage], [0.10.0], [thesp0nge@gmail.com])
+AC_INIT([aurora], [0.10.0], [thesp0nge@gmail.com])
 AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS([config.h])
 
@@ -40,7 +40,7 @@ AC_FUNC_REALLOC
 AC_CHECK_FUNCS([memset])
 
 
-# Enable/Disable mirage features
+# Enable/Disable aurora features
 
 AC_ARG_ENABLE([crawling],
               [ --disable-crawling disable source code string crawling ],
