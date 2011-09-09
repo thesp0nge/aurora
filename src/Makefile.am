@@ -1,5 +1,5 @@
 bin_PROGRAMS=aurora
-aurora_SOURCES=main.c time.c magic.c
+aurora_SOURCES=main.c time.c magic.c ash.c
 aurora_CPPFLAGS=-I$(top_srcdir)/include
 if USE_LIBMAGIC
 aurora_LDFLAGS=-lmagic

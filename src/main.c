@@ -8,7 +8,7 @@
 #include "libwc.h"
 #include "time.h"
 #include "magic.h"
-
+#include "ash.h"
 
 int printstring(void *s);
 
@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
   NODE *p;
   struct timeval tvBegin, tvEnd, tvDiff;
 
-  int i;
+  int i, code;
   printf("so the story begins...\n");
   printf("%s v%s - source code static analyzer on the go\n", PACKAGE, VERSION);
 
@@ -42,6 +42,16 @@ int main(int argc, char **argv) {
   printf("scan duration: %ld.%06lds\n", tvDiff.tv_sec, tvDiff.tv_usec);
 
   printf("%s\n", magic_file(magic_open(MAGIC_NONE), "test.txt"));
+
+  while ((code = ash()) != ASH_QUIT) {
+    switch (code) {
+      case ASH_VERSION:
+        fprintf(stdout, "%s v%s\n", PACKAGE, VERSION);
+        break;
+      default:
+        break;
+    }
+  } 
   
   return 0;
 }
