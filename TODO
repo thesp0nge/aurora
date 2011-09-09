@@ -1,0 +1,27 @@
+This is the aurora project to do list. If you want to pick one of this topic,
+please do this before start writing a single line of code:
+  - fork the aurora project (http://github.com/thesp0nge/aurora)
+  - use Linux Kernel coding standard for your code
+    (http://www.kernel.org/doc/Documentation/CodingStyle)
+  - please test your code before submit to me. Use TDD approach
+    (http://www.slideshare.net/amritayan/test-driven-development-in-c)
+  - commit to your branch and open me a pull request using github. I won't
+    handle patches sent via mail, unless for security breaches
+  - enjoy!
+
+Following topics are in a no particular order. In any moment you can drop me a
+line (thesp0nge@gmail.com) asking for better explaination on about what a
+particular topic.
+
+  * Aurora SHell (ash): when launched with no arguments, aurora like Owasp
+  Orizon will spawn a shell waiting for commands. I don't think I'll use lex
+  and yacc here to build a parser for commands... maybe some hardcoding
+  string comparison can be simplier and enought.
+
+  * API (client/server): a shared library containing the most important aurora
+  services must be designed and kept consistent to the tool
+
+  * API (web): a daemon waiting for REST request and calling aurora services
+  needs to be implemented
+
+
