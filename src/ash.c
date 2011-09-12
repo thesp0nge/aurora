@@ -4,7 +4,6 @@
 #include <signal.h>
 #include "ash.h"
 #include "log.h"
-$Id$
 
 int ash(aurora_opts *opts) {
 
