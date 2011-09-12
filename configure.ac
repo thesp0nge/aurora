@@ -10,6 +10,9 @@ AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 LT_INIT
 
+#defines 
+AC_DEFINE(IS_DEBUG, 1)
+
 # Checks for programs.
 AC_PROG_INSTALL
 AC_PROG_CC
@@ -23,7 +26,7 @@ AM_CONDITIONAL([USE_LIBMAGIC], [test "$ac_cv_lib_magic_magic_open" = yes])
 
 AC_CHECK_LIB([fl], [main])
 
-AC_CHECK_HEADERS([inttypes.h stdlib.h string.h unistd.h magic.h])
+AC_CHECK_HEADERS([inttypes.h stdlib.h string.h unistd.h magic.h memory.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_INT16_T

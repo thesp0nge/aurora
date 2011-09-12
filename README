@@ -39,17 +39,29 @@ LINK
   The github repository: http://github.com/thesp0nge/aurora
   The main website: http://aurora.armoredcode.com
   
+COMPILE AURORA
 
-For users
-  In order to install aurora and have it running, you have to simply follow the
-  standard installation process for GNU tools.
+  Compiling aurora and have it running is super easy. Just follow the configure
+  && make && make install mantra and you have the tool compiled for you.
 
+  The source code you will download from released tarballs will be *ALWAYS*
+  compilable, even the master branch from github repository can be use for a safe
+  cutting edge release. But if you're a regular user you want to download
+  prepared source code tarballs.
+
+  The development branch, *CAN* eventually compile but it's less safe than
+  master and should not be used unless for development purposes. In fact, you
+  will submit your hacks branching up from development.
+
+  The 'experimental' branch or every feature specific branch, isn't intended
+  for software distribution and I won't care if it compiles or not.
   
-For developers who want to hack the code
-  1) fork the report from github
-  2) launch autoreconf
-  3) start hacking 
-  4) make me a pull request
-  5) Have fun!
+  If you're a developer and you want to hack the code, follow these steps:
+    1) fork the report from github and create a brench for a feature you want
+       to implement starting from 'development' branch
+    2) launch autoreconf
+    3) start hacking 
+    4) make me a pull request
+    5) Have fun!
   
 

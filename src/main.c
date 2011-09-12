@@ -9,6 +9,8 @@
 #include "time.h"
 #include "magic.h"
 #include "ash.h"
+#include "log.h"
+#include "aurora.h"
 
 int printstring(void *s);
 
@@ -17,11 +19,26 @@ int main(int argc, char **argv) {
   NODE *list;
   NODE *p;
   struct timeval tvBegin, tvEnd, tvDiff;
-
+  aurora_opts opts;
   int i, code;
-  printf("so the story begins...\n");
+
+
+  opts.argc = argc;
+  opts.argv = argv;
+
+  DEBUG("%s\n", "so the story begins...");
   printf("%s v%s - source code static analyzer on the go\n", PACKAGE, VERSION);
 
+  while ((code = ash(&opts)) != ASH_QUIT) {
+    switch (code) {
+      case ASH_VERSION:
+        fprintf(stdout, "%s v%s\n", PACKAGE, VERSION);
+        break;
+      default:
+        break;
+    }
+  } 
+ 
   printf("scanning test.txt file... no you cannot change this by now... sorry\n");
 
   // Taking scanning start time
@@ -43,16 +60,7 @@ int main(int argc, char **argv) {
 
   printf("%s\n", magic_file(magic_open(MAGIC_NONE), "test.txt"));
 
-  while ((code = ash()) != ASH_QUIT) {
-    switch (code) {
-      case ASH_VERSION:
-        fprintf(stdout, "%s v%s\n", PACKAGE, VERSION);
-        break;
-      default:
-        break;
-    }
-  } 
-  
+ 
   return 0;
 }
 
