@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.65])
-AC_INIT([aurora], [0.10.0], [thesp0nge@gmail.com])
+AC_INIT([aurora], m4_esyscmd([build-aux/version.sh]), [thesp0nge@gmail.com])
 AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS([config.h])
 
@@ -11,7 +11,7 @@ AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 LT_INIT
 
 #defines 
-AC_DEFINE(IS_DEBUG, 1)
+AC_DEFINE(IS_DEBUG, 1, [aurora is in debug mode])
 
 # Checks for programs.
 AC_PROG_INSTALL

@@ -10,6 +10,7 @@
 #include "magic.h"
 #include "ash.h"
 #include "log.h"
+#include "version.h"
 #include "aurora.h"
 
 int printstring(void *s);
@@ -27,7 +28,7 @@ int main(int argc, char **argv) {
   opts.argv = argv;
 
   DEBUG("%s\n", "so the story begins...");
-  printf("%s v%s - source code static analyzer on the go\n", PACKAGE, VERSION);
+  printf("%s v%s - source code static analyzer on the go\n", PACKAGE, FULL_VERSION);
 
   while ((code = ash(&opts)) != ASH_QUIT) {
     switch (code) {

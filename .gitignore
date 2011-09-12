@@ -47,3 +47,4 @@ www/tmp
 www/output
 src/libcrawler/libcrawlerparser.c
 src/libwc/libwcparser.c
+include/version.h
