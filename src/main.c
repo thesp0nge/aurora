@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "config.h"
 
@@ -43,7 +44,14 @@ int main(int argc, char **argv) {
 
   DEBUG("%s\n", "so the story begins...");
   printf("%s v%s - source code static analyzer on the go\n", PACKAGE, FULL_VERSION);
-  printf("target: %s\n", opts.target);
+  DEBUG("%d\n", strlen(opts.target));
+  if (strlen(opts.target) != 0)
+    printf("target: |%s|\n", opts.target);
+  else {
+    fprintf(stderr, "%s: missing target name\n", PACKAGE);
+    return -1;
+  }
+  
 
   while ((code = ash(&opts)) != ASH_QUIT) {
     switch (code) {
