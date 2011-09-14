@@ -48,3 +48,13 @@ www/output
 src/libcrawler/libcrawlerparser.c
 src/libwc/libwcparser.c
 include/version.h
+*.o
+*.lo
+*.la
+Makefile
+config.h
+libtool
+.deps/
+.libs/
+src/aurora
+stamp-h1
