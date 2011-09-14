@@ -28,7 +28,6 @@ int ash(aurora_opts *opts) {
 
   if (strcmp(command, _STAT) == 0)
     code = ASH_STAT;
-  DEBUG("%s %d\n", command, code);
 
   free(command);
 

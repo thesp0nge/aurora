@@ -44,9 +44,8 @@ int main(int argc, char **argv) {
 
   DEBUG("%s\n", "so the story begins...");
   printf("%s v%s - source code static analyzer on the go\n", PACKAGE, FULL_VERSION);
-  DEBUG("%d\n", strlen(opts.target));
   if (strlen(opts.target) != 0)
-    printf("target: |%s|\n", opts.target);
+    printf("target: %s\n", opts.target);
   else {
     fprintf(stderr, "%s: missing target name\n", PACKAGE);
     return -1;
@@ -62,9 +61,15 @@ int main(int argc, char **argv) {
         // Taking scanning start time
         gettimeofday(&tvBegin, NULL);
 
-        printf("gatering stats\n");
+        printf("gatering stats for %s\n", opts.target);
         wc(opts.target, &s);
         printf("lines:%8d\nwords:%8d\nchars:%8d\n", s.lines, s.words, s.chars);
+        
+        // Taking scanning end tyime
+        gettimeofday(&tvEnd, NULL);
+
+        timeval_subtract(&tvDiff, &tvEnd, &tvBegin);
+        printf("scan duration: %ld.%06lds\n", tvDiff.tv_sec, (long int)tvDiff.tv_usec);
 
         break;
       default:
@@ -78,11 +83,7 @@ int main(int argc, char **argv) {
   printf("%d\n", list->counter);
   list_foreach(list, printstring);
 
-  // Taking scanning end tyime
-  gettimeofday(&tvEnd, NULL);
 
-  timeval_subtract(&tvDiff, &tvEnd, &tvBegin);
-  printf("scan duration: %ld.%06lds\n", tvDiff.tv_sec, tvDiff.tv_usec);
 
   printf("%s\n", magic_file(magic_open(MAGIC_NONE), "test.txt"));
 
