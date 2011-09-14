@@ -29,6 +29,9 @@ int ash(aurora_opts *opts) {
   if (strcmp(command, _STAT) == 0)
     code = ASH_STAT;
 
+  if (strcmp(command, _CRAWL) == 0)
+    code = ASH_CRAWL;
+
   free(command);
 
   return code;

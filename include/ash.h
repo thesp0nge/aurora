@@ -8,12 +8,15 @@
 #define ASH_VERSION 2
 #define ASH_HELP    4    
 #define ASH_STAT    8
+#define ASH_CRAWL   16
+
 #define ASH_ERROR -1
 
 #define _QUIT     "quit"
 #define _VERSION  "version"
 #define _HELP     "help"
 #define _STAT     "stat"
+#define _CRAWL    "crawl"
 
 #define ASH_PROMPT  "(ash) $ "
 

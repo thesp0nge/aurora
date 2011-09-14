@@ -72,18 +72,27 @@ int main(int argc, char **argv) {
         printf("scan duration: %ld.%06lds\n", tvDiff.tv_sec, (long int)tvDiff.tv_usec);
 
         break;
+      case ASH_CRAWL:
+        // Taking scanning start time
+        gettimeofday(&tvBegin, NULL);
+
+        printf("crawling %s\n", opts.target);
+        list = crawl(opts.target);
+        printf("%d\n", list->counter);
+        list_foreach(list, printstring);
+
+        // Taking scanning end tyime
+        gettimeofday(&tvEnd, NULL);
+
+        timeval_subtract(&tvDiff, &tvEnd, &tvBegin);
+        printf("scan duration: %ld.%06lds\n", tvDiff.tv_sec, (long int)tvDiff.tv_usec);
+
+
+        break;
       default:
         break;
     }
   } 
-
-  abort();
-
-  list = crawl(opts.target);
-  printf("%d\n", list->counter);
-  list_foreach(list, printstring);
-
-
 
   printf("%s\n", magic_file(magic_open(MAGIC_NONE), "test.txt"));
 
