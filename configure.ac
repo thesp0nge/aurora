@@ -26,7 +26,7 @@ AM_CONDITIONAL([USE_LIBMAGIC], [test "$ac_cv_lib_magic_magic_open" = yes])
 
 AC_CHECK_LIB([fl], [main])
 
-AC_CHECK_HEADERS([inttypes.h stdlib.h string.h unistd.h magic.h memory.h])
+AC_CHECK_HEADERS([inttypes.h stdlib.h string.h unistd.h magic.h memory.h getopt.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_INT16_T
@@ -40,7 +40,7 @@ AC_TYPE_UINT8_T
 # Checks for library functions.
 AC_FUNC_MALLOC
 AC_FUNC_REALLOC
-AC_CHECK_FUNCS([memset])
+AC_CHECK_FUNCS([memset getopt_long])
 
 
 # Enable/Disable aurora features

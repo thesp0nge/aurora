@@ -13,14 +13,12 @@ int ash(aurora_opts *opts) {
 
 
   memset(command, 0, 8192);
-  memset((void *)opts, 0, sizeof(aurora_opts));
 
   fprintf(stdout, "%s", ASH_PROMPT);
 
   fgets(command, 8192, stdin);
   command[strlen(command)-1] = '\0';
 
-  DEBUG("%s\n", command);
 
   if (strcmp(command, _QUIT) == 0)
     code = ASH_QUIT;
@@ -30,6 +28,7 @@ int ash(aurora_opts *opts) {
 
   if (strcmp(command, _STAT) == 0)
     code = ASH_STAT;
+  DEBUG("%s %d\n", command, code);
 
   free(command);
 

@@ -12,6 +12,7 @@
 #include "log.h"
 #include "version.h"
 #include "aurora.h"
+#include "cli.h"
 
 int printstring(void *s);
 
@@ -27,29 +28,45 @@ int main(int argc, char **argv) {
   opts.argc = argc;
   opts.argv = argv;
 
+  switch ((code = aurora_parse_cli(argc, argv, &opts))) {
+    case ASH_HELP:
+      fprintf(stderr, "no help available\n");
+      return 0;
+      break;
+    case ASH_VERSION:
+      fprintf(stderr, "%s\n", VERSION);
+      return 0;
+      break;
+    default:
+      break;
+  }
+
   DEBUG("%s\n", "so the story begins...");
   printf("%s v%s - source code static analyzer on the go\n", PACKAGE, FULL_VERSION);
+  printf("target: %s\n", opts.target);
 
   while ((code = ash(&opts)) != ASH_QUIT) {
     switch (code) {
       case ASH_VERSION:
         fprintf(stdout, "%s v%s\n", PACKAGE, VERSION);
         break;
+      case ASH_STAT:
+        // Taking scanning start time
+        gettimeofday(&tvBegin, NULL);
+
+        printf("gatering stats\n");
+        wc(opts.target, &s);
+        printf("lines:%8d\nwords:%8d\nchars:%8d\n", s.lines, s.words, s.chars);
+
+        break;
       default:
         break;
     }
   } 
- 
-  printf("scanning test.txt file... no you cannot change this by now... sorry\n");
 
-  // Taking scanning start time
-  gettimeofday(&tvBegin, NULL);
+  abort();
 
-  printf("gatering stats\n");
-  wc("test.txt", &s);
-  printf("lines:%8d\nwords:%8d\nchars:%8d\n", s.lines, s.words, s.chars);
-
-  list = crawl("test.txt");
+  list = crawl(opts.target);
   printf("%d\n", list->counter);
   list_foreach(list, printstring);
 

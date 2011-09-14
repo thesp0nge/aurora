@@ -6,7 +6,8 @@
 typedef struct {
   int argc; 
   char **argv;
-  char filename[FILENAME_SIZE];
+  char target[FILENAME_SIZE];
+  int verbose;
 } aurora_opts;
 
 #endif
