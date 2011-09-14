@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
       return 0;
       break;
     case ASH_VERSION:
-      fprintf(stderr, "%s\n", VERSION);
+      fprintf(stderr, "%s\n", FULL_VERSION);
       return 0;
       break;
     default:
@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
   while ((code = ash(&opts)) != ASH_QUIT) {
     switch (code) {
       case ASH_VERSION:
-        fprintf(stdout, "%s v%s\n", PACKAGE, VERSION);
+        fprintf(stdout, "%s v%s\n", PACKAGE, FULL_VERSION);
         break;
       case ASH_STAT:
         // Taking scanning start time
