@@ -25,8 +25,10 @@ AS_IF([test "$ac_cv_lib_magic_magic_open" = yes], [HAVE_LIBMAGIC=1], [HAVE_LIBMA
 AM_CONDITIONAL([USE_LIBMAGIC], [test "$ac_cv_lib_magic_magic_open" = yes])
 
 AC_CHECK_LIB([fl], [main])
+AC_CHECK_LIB([sqlite3], [sqlite3_open])
+AM_CONDITIONAL([USE_SQLITE], [test "$ac_cv_lib_sqlite_sqlite3_open" = yes])
 
-AC_CHECK_HEADERS([inttypes.h stdlib.h string.h unistd.h magic.h memory.h getopt.h])
+AC_CHECK_HEADERS([inttypes.h stdlib.h string.h unistd.h magic.h memory.h getopt.h sqlite3.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_INT16_T

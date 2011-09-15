@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <sqlite3.h>
+
 #include "config.h"
 
 #include "list.h"
@@ -14,6 +16,7 @@
 #include "version.h"
 #include "aurora.h"
 #include "cli.h"
+#include "crawl.h"
 
 int printstring(void *s);
 
@@ -24,6 +27,8 @@ int main(int argc, char **argv) {
   struct timeval tvBegin, tvEnd, tvDiff;
   aurora_opts opts;
   int i, code;
+  sqlite3 *db;
+  sqlite3_stmt *stmt;
 
 
   opts.argc = argc;
@@ -79,7 +84,33 @@ int main(int argc, char **argv) {
         printf("crawling %s\n", opts.target);
         list = crawl(opts.target);
         printf("%d\n", list->counter);
-        list_foreach(list, printstring);
+
+        if (sqlite3_open("crawling.db", &db)) {
+          fprintf(stderr, "%s: can't connect to crawling.db (%s)\n", PACKAGE, sqlite3_errmsg(db));
+          sqlite3_close(db);
+          return -1;
+        }
+
+        if (sqlite3_prepare_v2(db, "SELECT version FROM SCHEMA", -1, &stmt, 0)) {
+          fprintf(stderr, "%s: can't get db schema version (%s)\n", PACKAGE, sqlite3_errmsg(db));
+          sqlite3_close(db);
+          return -1;
+        } 
+        
+
+        if (sqlite3_step(stmt) == SQLITE_ROW){
+          const char *val = (const char*)sqlite3_column_text(stmt,0);
+          if (strcmp(val, DB_VERSION)==0)
+            printf("DB OK!");
+          else {
+            fprintf(stderr, "%s: wrong database schema. %s version was found, %s expected\n", PACKAGE, val, DB_VERSION);
+            sqlite3_close(db);
+            return -1;
+          }
+        }
+
+        sqlite3_close(db);
+        // list_foreach(list, printstring);
 
         // Taking scanning end tyime
         gettimeofday(&tvEnd, NULL);
